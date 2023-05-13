@@ -157,7 +157,15 @@ aside ul {
 	background-size: contain;
 	top: 15vh;
 	left: 45%;
-
+	animation: move-right 5s linear infinite;
+}
+@keyframes move-right {
+	0%{
+		left:0%
+	}
+	100%{
+		left: calc(100% - 0px)
+	}
 }
 
 
@@ -730,8 +738,8 @@ aside ul {
 }
 
 .explosion {
-	width: 128px;
-	height: 160px;
+	width: 60px;
+	height: 0px;
 	position: absolute;
 	top: 88vw;
 	left: 300px;
@@ -17648,4 +17656,9 @@ ul {
 	width: 100vh;
 	overflow-x: scroll;
 	height: 512;
+}
+.score{
+    position: fixed;
+	color: yellow;
+	text-transform: uppercase;
 }

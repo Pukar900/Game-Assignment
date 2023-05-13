@@ -40,7 +40,7 @@ function fireArrow() {
                 clearInterval(aInterval);
             } if (arrow.top < 0) { arrow.remove() };
         }
-    }, 1000 / 6000);
+    }, 1000 / 60);
 }
 
 function explodeB(bomb) {
@@ -65,8 +65,7 @@ function explodeB(bomb) {
             player.classList.remove('hit')
         }, 1000);
 
-    } 
-	else {
+    } else {
         score++;
     }
 }
@@ -108,7 +107,7 @@ function gameOver() {
     player.className = 'character dead';
     var element = document.createElement('div');
     element.className = 'start';
-    var content = document.createTextNode(' you loser, Restart !!!');
+    var content = document.createTextNode('Game Over.. Restart');
     element.appendChild(content);
     element.addEventListener('click', () => location.reload());
     document.body.appendChild(element);
@@ -269,6 +268,7 @@ function keydown(event) {
 
 function myLoadFunction() {
     player = document.getElementById('player');
+   
     // timeout = setInterval(move, 10);
     document.addEventListener('keydown', keydown);
     document.addEventListener('keyup', keyup);
