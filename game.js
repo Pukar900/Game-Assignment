@@ -107,7 +107,7 @@ function gameOver() {
     player.className = 'character dead';
     var element = document.createElement('div');
     element.className = 'start';
-    var content = document.createTextNode('Game Over.. Restart');
+    var content = document.createTextNode('Game Over..');
     element.appendChild(content);
     element.addEventListener('click', () => location.reload());
     document.body.appendChild(element);
@@ -137,7 +137,7 @@ function dropBombs() {
             if (objectCollision(player, bombs[i]) != 0 && !immortal) {
                 explodeB(bombs[i]);
                 reset(bombs[i]);
-                console.log('hi');
+                console.log('score');
             }
             else {
                 var newPos = topOfBomb + 1 * speedMult;
@@ -155,6 +155,7 @@ function startGame() {
     // generateBombs();
     move();
     dropBombs();
+    moveAlien();
 }
 
 function keyup(event) {
@@ -265,10 +266,30 @@ function keydown(event) {
     }
 }
 
+function moveAlien() {
+    const alien = document.getElementById("alien");
+    const maxLeft = document.body.clientWidth - alien.offsetWidth;
+    const currentLeft = parseInt(alien.style.left) || 0;
+    const direction = alien.dataset.direction === "right" ? 1 : -1;
+
+    let newLeft = currentLeft + 10 * direction;
+
+    if (newLeft > maxLeft) {
+        newLeft = maxLeft;
+        alien.dataset.direction = "left";
+    } else if (newLeft < 0) {
+        newLeft = 0;
+        alien.dataset.direction = "right";
+    }
+
+    alien.style.left = newLeft + "px";
+
+}                       
+
 
 function myLoadFunction() {
     player = document.getElementById('player');
-   
+
     // timeout = setInterval(move, 10);
     document.addEventListener('keydown', keydown);
     document.addEventListener('keyup', keyup);
